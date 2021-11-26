@@ -70,7 +70,7 @@ const changeValue = () => {
 return (
 
         <div>
-            <input min="-1" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
+            <input min="-1" max="3600" step="60" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
             <div class="time"><h1>Temps :</h1>{count}</div>
             <button onClick={changeValue}>{startBtn}</button>
             <div style={{display:'none'}} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>

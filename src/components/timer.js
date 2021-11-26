@@ -30,7 +30,7 @@ function Timer() {
     useEffect(() => {
         // executé après le premier rendu et à chaque changement des variables entre crochets....****
 
-        if (startBtn == 'STOP') {
+        if (startBtn == 'ABANDONNER') {
             const interval = setTimeout(() => {
                 setInputTime(InputTime - 1)
                 setCount(count - 1)
@@ -58,9 +58,9 @@ function Timer() {
 const changeValue = () => {
     console.log(startBtn)
     if (startBtn == 'LANCER') {
-        setStartBtn('STOP')
+        setStartBtn('ABANDONNER')
     }
-    else if (startBtn == 'STOP') {
+    else if (startBtn == 'ABANDONNER') {
         setStartBtn('LANCER')
 
     }

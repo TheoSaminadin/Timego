@@ -15,8 +15,7 @@ function Timer() {
 
     const [startBtn, setStartBtn] = useState('LANCER')
     const [count, setCount] = useState(0)
-    const [InputTime, setInputTime] = useState(0)
-
+    const [InputTime, setInputTime] = useState(0);
 
     const GetInputTime = (event) => {
         setInputTime((event.target.value))
@@ -41,7 +40,12 @@ function Timer() {
 
                 // executé lorsque l'on ferme l'application
 
-                clearTimeout(interval)
+               return(clearTimeout(interval))
+            }
+
+            if (count == 0) {
+                return (document.getElementById('score').style.display = "block", clearTimeout(interval))
+                
             }
         }
             // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
@@ -63,12 +67,13 @@ const changeValue = () => {
 
 return (
 
-    <div>
-        <input min="-1" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
-        <div class="time"><h1>Temps :</h1>{count}</div>
-        <button onClick={changeValue}>{startBtn}</button>
-    </div>
-)
+        <div>
+            <input min="-1" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
+            <div class="time"><h1>Temps :</h1>{count}</div>
+            <button onClick={changeValue}>{startBtn}</button>
+            <div style={{display:'none'}} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>
+        </div>
+    )
 
 }
 

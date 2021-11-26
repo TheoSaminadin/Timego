@@ -34,10 +34,10 @@ function Timer() {
             const interval = setTimeout(() => {
                 setInputTime(InputTime - 1)
                 setCount(count - 1)
-                document.getElementById('timeInput').disabled = true;
+                   document.getElementById('timeInput').disabled = true;
             }, 1000);
             if (startBtn == 'LANCER') {
-                document.getElementById('timeInput').disabled = false;
+             document.getElementById('timeInput').disabled = false
 
 
                 // executé lorsque l'on ferme l'application

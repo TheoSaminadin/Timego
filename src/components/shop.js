@@ -1,31 +1,80 @@
 
 import React, { useState, useEffect } from "react";
-
+import lingot from './oeufLingot.png';
+import xp from './oeufXp.png';
+import level from './oeufLevel.png';
 import ReactDOM from 'react-dom';
 
 function Shop() {
 
-    const [wallet, setWallet] = useState(50)
-    const [price, setPrice] = useState(20)
+    const [wallet, setWallet] = useState(100)
+    const [spent, setSpent] = useState(0)
 
-    const Buy = (event) => {
+    const [priceLingot, setPriceLingot] = useState(20)
+    const [priceXp, setPriceXp] = useState(40)
+    const [priceLevel, setPriceLevel] = useState(60)
 
-      
-            if (wallet >= price) {
-                setWallet(wallet - price)
 
-            }
 
-            if (wallet <= price) {
-                return(document.getElementById('article').disabled = true)
+    useEffect(() => {
+        setWallet(wallet)
+    }, [wallet])
 
-            }
+    const BuyLingot = (event) => {
+        if (wallet >= priceLingot) {
+            setWallet(wallet-priceLingot)
+        }
+        else {
+            return (document.getElementById('articleLingot').disabled = true)
+        }
 
-        
+    }
 
+    const BuyXp = (event) => {
+        if (wallet >= priceXp) {
+            setWallet(wallet-priceXp)
+        }
+        else {
+            return (document.getElementById('articleXp').disabled = true)
+        }
 
 
     }
+
+    const BuyLevel = (event) => {
+        if (wallet >= priceLevel) {
+            setWallet(wallet - priceLevel)
+        }
+        else {
+            return (document.getElementById('articleLevel').disabled = true)
+        }
+    }
+
+
+
+    /*
+     if (wallet >= priceLevel) {
+        setSpent(wallet - priceLevel)
+
+    }
+    */
+
+
+
+
+
+    /*
+    
+   else if (wallet >= priceLevel) {
+        return (document.getElementById('articleLevel').disabled = true)
+
+
+    }
+
+*/
+
+
+
 
 
 
@@ -33,9 +82,27 @@ function Shop() {
 
         <div>
             <h1>Mes lingots : {wallet}</h1>
-            <img src="https://images-na.ssl-images-amazon.com/images/I/71FqRm8FR4L.jpg"></img>
-            <h1>Lingots d'or</h1>
-            <button id="article" onClick={Buy} value={price} >Acheter</button>
+            <div class="Oeuf lingot">
+                <img src={lingot} width="auto" height="100" alt="Logo" />
+                <p>Lingots d'or</p>
+                <p>20 lingots</p>
+                <button id="articleLingot" onClick={BuyLingot} value={priceLingot} >Acheter</button>
+            </div>
+
+            <div class="Oeuf xp">
+                <img src={xp} width="auto" height="100" alt="Logo" />
+                <p>Xp au top</p>
+                <p>40 lingots</p>
+                <button id="articleXp" onClick={BuyXp} value={priceXp} >Acheter</button>
+            </div>
+
+            <div class="Oeuf level">
+                <img src={level} width="auto" height="100" alt="Logo" />
+                <p>Level up</p>
+                <p>60 lingots</p>
+                <button id="articleLevel" onClick={BuyLevel} value={priceLevel} >Acheter</button>
+            </div>
+
 
         </div>
     )

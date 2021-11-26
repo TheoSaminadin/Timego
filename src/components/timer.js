@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+
 import ReactDOM from 'react-dom';
 
-function Buttons() {
+function Timer() {
 
 
     //const start_btn = React.createElement('button', {},
@@ -72,4 +72,4 @@ return (
 
 }
 
-export default Buttons
+export default Timer

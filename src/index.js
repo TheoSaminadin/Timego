@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Buttons from './components/buttons'
+import Timer from './components/timer'
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    <Buttons />
+    <Timer />
   </React.StrictMode>,
   document.getElementById('root')
 );

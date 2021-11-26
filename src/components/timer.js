@@ -17,11 +17,11 @@ function Timer() {
     const [count, setCount] = useState(0)
     const [InputTime, setInputTime] = useState(0);
     const [point, setPoint] = useState(0);
-
+    const [second, setSecond] = useState(0)
 
     const GetInputTime = (event) => {
         setInputTime((event.target.value))
-       
+
         setCount(InputTime)
         setPoint(InputTime)
     }
@@ -29,51 +29,67 @@ function Timer() {
 
     useEffect(() => {
         // executé après le premier rendu et à chaque changement des variables entre crochets....****
-
+       
         if (startBtn == 'ABANDONNER') {
-            const interval = setTimeout(() => {
+
+            const Second = setTimeout(() => {
+                if (second <1) {
+                    setSecond(59)
+                }else {
+                setSecond(second - 1)
+                }
+                if (count<1) {
+                    setSecond(0)
+                }
+               
+                document.getElementById('timeInput').disabled = true;
+            }, 1000)
+
+
+            const Minute = setTimeout(() => {
                 setInputTime(InputTime - 1)
                 setCount(count - 1)
-                   document.getElementById('timeInput').disabled = true;
-            }, 1000);
+                document.getElementById('timeInput').disabled = true;
+            }, 60000);
+           
+           
             if (startBtn == 'LANCER') {
-             document.getElementById('timeInput').disabled = false
+                
+                document.getElementById('timeInput').disabled = false
 
-
-                // executé lorsque l'on ferme l'application
-
-               return(clearTimeout(interval))
+                return (clearTimeout(Minute))
             }
 
             if (count == 0) {
-                return (document.getElementById('score').style.display = "block", clearTimeout(interval))
-                
+               
+                return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
+
             }
         }
-            // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
-        }, [count,startBtn]);
+        // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
+    }, [count, startBtn, second]);
 
 
 
-const changeValue = () => {
-    console.log(startBtn)
-    if (startBtn == 'LANCER') {
-        setStartBtn('ABANDONNER')
+    const changeValue = () => {
+        console.log(startBtn)
+        if (startBtn == 'LANCER') {
+            setStartBtn('ABANDONNER')
+        }
+        else if (startBtn == 'ABANDONNER') {
+            setStartBtn('LANCER')
+
+        }
+
     }
-    else if (startBtn == 'ABANDONNER') {
-        setStartBtn('LANCER')
 
-    }
-
-}
-
-return (
+    return (
 
         <div>
-            <input min="-1" max="3600" step="60" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
-            <div class="time"><h1>Temps :</h1>{count}</div>
+            <input min="-1" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
+            <div class="time"><h1>Temps :</h1>{count}minutes{second}seconds</div>
             <button onClick={changeValue}>{startBtn}</button>
-            <div style={{display:'none'}} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>
+            <div style={{ display: 'none' }} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>
         </div>
     )
 

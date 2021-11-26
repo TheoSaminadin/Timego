@@ -74,9 +74,11 @@ function Timer() {
     const changeValue = () => {
         console.log(startBtn)
         if (startBtn == 'LANCER') {
+            setCount(count - 1)
             setStartBtn('ABANDONNER')
         }
         else if (startBtn == 'ABANDONNER') {
+
             setStartBtn('LANCER')
 
         }
@@ -87,7 +89,7 @@ function Timer() {
 
         <div>
             <input min="-1" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
-            <div class="time"><h1>Temps :</h1>{count}minutes{second}seconds</div>
+            <div class="time"><h1>Temps :</h1>{count}:{second}</div>
             <button onClick={changeValue}>{startBtn}</button>
             <div style={{ display: 'none' }} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>
         </div>

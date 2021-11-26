@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import ReactDOM from 'react-dom';
 
-function Buttons() {
+function Timer() {
 
 
     //const start_btn = React.createElement('button', {},
@@ -89,4 +89,4 @@ function Buttons() {
 
 }
 
-export default Buttons
+export default Timer

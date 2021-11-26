@@ -16,12 +16,14 @@ function Timer() {
     const [startBtn, setStartBtn] = useState('LANCER')
     const [count, setCount] = useState(0)
     const [InputTime, setInputTime] = useState(0);
+    const [point, setPoint] = useState(0);
+
 
     const GetInputTime = (event) => {
         setInputTime((event.target.value))
        
         setCount(InputTime)
-        
+        setPoint(InputTime)
     }
 
 

@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+
 import reportWebVitals from './reportWebVitals';
 
 import Timer from './components/timer'
 import Shop from './components/shop'
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    <Timer />
+
+    <Timer  />
     <Shop />
   </React.StrictMode>,
   document.getElementById('root')

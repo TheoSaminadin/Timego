@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from "react";
-import lingot from './oeufLingot.png';
-import xp from './oeufXp.png';
-import level from './oeufLevel.png';
+import lingot from '../img/oeufLingot.png';
+import xp from '../img/oeufXp.png';
+import level from '../img/oeufLevel.png';
 import ReactDOM from 'react-dom';
 
 function Shop() {
@@ -22,7 +22,7 @@ function Shop() {
 
     const BuyLingot = (event) => {
         if (wallet >= priceLingot) {
-            setWallet(wallet-priceLingot)
+            setWallet(wallet - priceLingot)
         }
         else {
             return (document.getElementById('articleLingot').disabled = true)
@@ -32,7 +32,7 @@ function Shop() {
 
     const BuyXp = (event) => {
         if (wallet >= priceXp) {
-            setWallet(wallet-priceXp)
+            setWallet(wallet - priceXp)
         }
         else {
             return (document.getElementById('articleXp').disabled = true)
@@ -79,31 +79,34 @@ function Shop() {
 
 
     return (
+        <div className="BigShopContainer">
+            <div className="ShopContainer">
+                <div className="ShopPoint"> <h1>Mes lingots : {wallet}</h1></div>
 
-        <div>
-            <h1>Mes lingots : {wallet}</h1>
-            <div class="Oeuf lingot">
-                <img src={lingot} width="auto" height="100" alt="Logo" />
-                <p>Lingots d'or</p>
-                <p>20 lingots</p>
-                <button id="articleLingot" onClick={BuyLingot} value={priceLingot} >Acheter</button>
+                <div className="EggsContainer">
+                    <div class="Oeuf lingot">
+                        <img src={lingot} width="auto" height="100" alt="Logo" />
+                        <p>Lingots d'or</p>
+                        <p>20 lingots</p>
+                        <button id="articleLingot" onClick={BuyLingot} value={priceLingot} >Acheter</button>
+                    </div>
+
+                    <div class="Oeuf xp">
+                        <img src={xp} width="auto" height="100" alt="Logo" />
+                        <p>Xp au top</p>
+                        <p>40 lingots</p>
+                        <button id="articleXp" onClick={BuyXp} value={priceXp} >Acheter</button>
+                    </div>
+
+                    <div class="Oeuf level">
+                        <img src={level} width="auto" height="100" alt="Logo" />
+                        <p>Level up</p>
+                        <p>60 lingots</p>
+                        <button id="articleLevel" onClick={BuyLevel} value={priceLevel} >Acheter</button>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="Oeuf xp">
-                <img src={xp} width="auto" height="100" alt="Logo" />
-                <p>Xp au top</p>
-                <p>40 lingots</p>
-                <button id="articleXp" onClick={BuyXp} value={priceXp} >Acheter</button>
-            </div>
-
-            <div class="Oeuf level">
-                <img src={level} width="auto" height="100" alt="Logo" />
-                <p>Level up</p>
-                <p>60 lingots</p>
-                <button id="articleLevel" onClick={BuyLevel} value={priceLevel} >Acheter</button>
-            </div>
-
-
         </div>
     )
 

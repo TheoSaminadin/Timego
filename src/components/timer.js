@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import '../index.css'
 import ReactDOM, { render } from 'react-dom';
+
+//images
 import Home from '../img/Home.png';
-var createReactClass = require('create-react-class');
+import GemmeLogo from '../img/GemmeLogo.png';
+import NiveauLogo from '../img/NiveauLogo.png';
+import Xplogo from '../img/XpLogo.png';
+
+
+
+
 function Timer() {
 
 
@@ -18,6 +26,7 @@ function Timer() {
     const [count, setCount] = useState(0)
     const [InputTime, setInputTime] = useState(10);
     const [point, setPoint] = useState(0);
+    const [PubPoint, setPubPoint] = useState(0)
     const [second, setSecond] = useState(0)
 
 
@@ -42,6 +51,7 @@ function Timer() {
                 }
                 if (count < 1) {
                     setSecond(0)
+                    
                 }
 
 
@@ -66,7 +76,7 @@ function Timer() {
             }
 
             if (count == 0) {
-
+setPubPoint(point)
                 return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
 
             }
@@ -95,8 +105,16 @@ function Timer() {
 
     return (
         <div className="BigTimerContainer">
+
             <div className="TimerContainer">
 
+                <div className="StatBar">
+                    <p><img alt="XP image" src={Xplogo} /> 23 xp</p>
+                    <p><img alt="Gemme image" src={GemmeLogo} /> {PubPoint}</p>
+                    <p><img alt="Niveau image" src={NiveauLogo} /> niv 1</p>
+                </div>
+                <h1 style={{fontFamily:"Montserrat Bold", fontSize:"48px", margin:"0"}}>Choisi ton temps !</h1>
+                <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin de ta séance...</p>
                 <div className="RoundBox" ><img className="HomeEgg" src={Home} />
 
                     <input className="range" min="9" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>

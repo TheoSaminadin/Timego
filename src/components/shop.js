@@ -5,6 +5,7 @@ import xp from '../img/oeufXp.png';
 import level from '../img/oeufLevel.png';
 import Layout from "./Layout";
 import AppContext from "../AppContext";
+import Banderole from "../img/Banderole.png"
 
 
 function Shop() {
@@ -94,6 +95,7 @@ function Shop() {
 
             <div className="BigShopContainer">
                 <div className="ShopContainer">
+                <img src={Banderole} width="auto" height="100" alt="Banderole" />
                     <div className="ShopPoint"> <h1>Mes lingots : {points}</h1></div>
 
                     <div className="EggsContainer">

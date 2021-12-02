@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom"
 import '../index.css'
-import ReactDOM, { render } from 'react-dom';
+
 
 //images
 import Home from '../img/Home.png';
 import GemmeLogo from '../img/GemmeLogo.png';
 import NiveauLogo from '../img/NiveauLogo.png';
 import Xplogo from '../img/XpLogo.png';
-
-
+import TimerLogo from '../img/TimerLogo.png';
+import ShopLogo from '../img/ShopLogo.png';
+import Layout from "./Layout";
+import AppContext from "../AppContext";
 
 
 function Timer() {
-
+    const {
+        time,
+        setTime,
+        isTimerRunning,
+        startTimer,
+        pointsToWin,
+        hasWon
+    } = useContext(AppContext);
 
     //const start_btn = React.createElement('button', {},
     //'Go')
@@ -22,109 +32,137 @@ function Timer() {
     //ReactDOM.render(start_btn, document.querySelector('#start'))
     //ReactDOM.render(stop_btn, document.querySelector('#stop'))
 
-    const [startBtn, setStartBtn] = useState('LANCER')
-    const [count, setCount] = useState(0)
-    const [InputTime, setInputTime] = useState(10);
-    const [point, setPoint] = useState(0);
-    const [PubPoint, setPubPoint] = useState(0)
-    const [second, setSecond] = useState(0)
+    // const [count, setCount] = useState(0)
 
 
-    const GetInputTime = (event) => {
-        setInputTime((event.target.value))
 
-        setCount(InputTime)
-        setPoint(InputTime * 0.5)
+    // const [startBtn, setStartBtn] = useState('LANCER')
+    const [minuteTime, setMinuteTime] = useState(10);
+    // const [point, setPoint] = useState(0);
+    // const [second, setSecond] = useState(0)
+
+    const handleInputTimeChange = (event) => {
+        setMinuteTime(event.target.value)
+        setTime(event.target.value * 60)
+        // setMinuteTime(event.target.value)
+        // setInputTime((event.target.value))
+        // setCount(InputTime)
+        // setPoint(InputTime * 0.5)
     }
 
 
-    useEffect(() => {
+    // useEffect(() => {
         // executé après le premier rendu et à chaque changement des variables entre crochets....****
 
-        if (startBtn == 'ABANDONNER') {
+        // if (startBtn == 'ABANDONNER') {
 
-            const Second = setTimeout(() => {
-                if (second < 1) {
-                    setSecond(59)
-                } else {
-                    setSecond(second - 1)
-                }
-                if (count < 1) {
-                    setSecond(0)
-                    
-                }
+        //     const Second = setTimeout(() => {
+        //         if (second < 1) {
+        //             setSecond(59)
+        //         } else {
+        //             setSecond(second - 1)
+        //         }
+        //         if (count < 1) {
+        //             setSecond(0)
 
-
-            }, 1000)
+        //         }
 
 
-            const Minute = setTimeout(() => {
-                setInputTime(InputTime - 1)
-                setCount(count - 1)
-
-            }, 60000);
+        //     }, 1000)
 
 
-            if (startBtn == 'LANCER') {
+            // const Minute = setTimeout(() => {
+            //     setInputTime(inputTime - 1)
+            //     setCount(count - 1)
 
-                document.getElementById('timeInput').disabled = false
+            // }, 60000);
 
-                return (clearTimeout(Minute))
-            }
-            else if (startBtn == 'ABANDONNER') {
-                return (document.getElementById('timeInput').disabled = true)
-            }
 
-            if (count == 0) {
-setPubPoint(point)
-                return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
+            // if (startBtn == 'LANCER') {
+            //     document.getElementById('timeInput').disabled = false
+            //     return (clearTimeout(Minute))
+            // }
+            // else if (startBtn == 'ABANDONNER') {
+            //     return (document.getElementById('timeInput').disabled = true)
+            // }
 
-            }
-        }
+            // if (count == 0) {
+             
+            //     return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
+
+            // }
+        // }
         // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
-    }, [count, startBtn, second]);
+    // }, [count, startBtn, second]);
 
 
 
-    const changeValue = () => {
-        console.log(startBtn)
-        if (startBtn == 'LANCER') {
-            setCount(count - 1)
-            setStartBtn('ABANDONNER')
-        }
-        else if (startBtn == 'ABANDONNER') {
+    // const changeValue = () => {
+    //     console.log(startBtn)
+    //     if (startBtn == 'LANCER') {
+       
+    //         setStartBtn('ABANDONNER')
+    //     }
+    //     else if (startBtn == 'ABANDONNER') {
 
-            setStartBtn('LANCER')
-
-        }
-
-    }
+    //         setStartBtn('LANCER')
+    //     }
+    // }
 
 
     // Style 
 
     return (
-        <div className="BigTimerContainer">
+        <Layout>
+            <div className="BigTimerContainer">
 
-            <div className="TimerContainer">
+                <div className="TimerContainer">
 
-                <div className="StatBar">
-                    <p><img alt="XP image" src={Xplogo} /> 23 xp</p>
-                    <p><img alt="Gemme image" src={GemmeLogo} /> {PubPoint}</p>
-                    <p><img alt="Niveau image" src={NiveauLogo} /> niv 1</p>
+                    <div className="StatBar">
+                        <p><img alt="XP image" src={Xplogo} /> 23 xp</p>
+                        <p><img alt="Gemme image" src={GemmeLogo} /> 23</p>
+                        <p><img alt="Niveau image" src={NiveauLogo} /> niv 1</p>
+                    </div>
+                    <h1 style={{ fontFamily: "Montserrat Bold", fontSize: "48px", margin: "0", marginTop: "3vh" }}>Choisi ton temps !</h1>
+                    <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin 1de ta séance...</p>
+                    <div className="RoundBox" ><img className="HomeEgg" src={Home} />
+
+                        <input
+                            className="range"
+                            min="9"
+                            max="61"
+                            step="1"
+                            onChange={handleInputTimeChange}
+                            id="timeInput"
+                            type="range"
+                            value={minuteTime}
+                        />
+                    </div>
+                    {/* <div className="time"><h1>{count}:{second} min</h1></div> */}
+                    {time}
+
+                    <button onClick={startTimer}>
+                        {isTimerRunning ? 'ABANDONNER' : 'LANCER'}
+                    </button>
+
+                    {/* <div style={{ display: 'none' }} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div> */}
+                    
+                    {hasWon && (
+                        <div>
+                            <h1> Bravo ! tu as travaillé {time} secondes et gagné {pointsToWin} lingots</h1>
+                        </div>
+                    )}
+                    
+                    <div className="Menu">
+                        <Link to="/"> <img alt="Timer Logo" src={TimerLogo} /></Link>
+                        <Link to="/shop"> <img alt="Shop Logo" src={ShopLogo} /></Link>
+
+                    </div>
                 </div>
-                <h1 style={{fontFamily:"Montserrat Bold", fontSize:"48px", margin:"0"}}>Choisi ton temps !</h1>
-                <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin de ta séance...</p>
-                <div className="RoundBox" ><img className="HomeEgg" src={Home} />
 
-                    <input className="range" min="9" max="61" step="1" onChange={GetInputTime} id="timeInput" type="range" value={InputTime}></input>
-                </div>
-                <div className="time"><h1>{count}:{second} min</h1></div>
-
-                <button onClick={changeValue}>{startBtn}</button>
-                <div style={{ display: 'none' }} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div>
             </div>
-        </div>
+        </Layout>
+
     )
 
 

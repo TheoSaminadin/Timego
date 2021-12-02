@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 
 
 import reportWebVitals from './reportWebVitals';
 
-import Timer from './components/timer'
-import Shop from './components/shop'
+
 ReactDOM.render(
   <React.StrictMode>
-
-    <Timer  />
-    <Shop />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

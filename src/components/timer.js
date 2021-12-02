@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom"
 import '../index.css'
 import oeufPopUp from '../img/oeufLingot.png';
 
@@ -9,8 +8,7 @@ import Home from '../img/Home.png';
 import GemmeLogo from '../img/GemmeLogo.png';
 import NiveauLogo from '../img/NiveauLogo.png';
 import Xplogo from '../img/XpLogo.png';
-import TimerLogo from '../img/TimerLogo.png';
-import ShopLogo from '../img/ShopLogo.png';
+
 import Layout from "./Layout";
 import AppContext from "../AppContext";
 
@@ -178,11 +176,7 @@ function Timer() {
                         </>
                     )}
 
-                    <div className="Menu">
-                        <Link to="/"> <img alt="Timer Logo" src={TimerLogo} /></Link>
-                        <Link to="/shop"> <img alt="Shop Logo" src={ShopLogo} /></Link>
-
-                    </div>
+                    
                 </div>
 
             </div>

@@ -1,24 +1,34 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import lingot from '../img/oeufLingot.png';
 import xp from '../img/oeufXp.png';
 import level from '../img/oeufLevel.png';
 import Layout from "./Layout";
+import AppContext from "../AppContext";
 
 
 function Shop() {
 
-    const [wallet, setWallet] = useState(100)
+    const {
+       
+        newPoints,
+        setPoints,
+        points,
+        hasWon
+        
+
+    } = useContext(AppContext);
+
+    const [wallet, setWallet] = useState(points);
     const [spent, setSpent] = useState(0)
 
     const [priceLingot, setPriceLingot] = useState(20)
     const [priceXp, setPriceXp] = useState(40)
     const [priceLevel, setPriceLevel] = useState(60)
 
-
-
+    
     useEffect(() => {
-        setWallet(wallet)
+        setPoints(wallet)
     }, [wallet])
 
     const BuyLingot = (event) => {
@@ -84,7 +94,7 @@ function Shop() {
 
             <div className="BigShopContainer">
                 <div className="ShopContainer">
-                    <div className="ShopPoint"> <h1>Mes lingots : {wallet}</h1></div>
+                    <div className="ShopPoint"> <h1>Mes lingots : {points}</h1></div>
 
                     <div className="EggsContainer">
                         <div class="Oeuf lingot">

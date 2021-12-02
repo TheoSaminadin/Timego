@@ -27,7 +27,7 @@ const AppManager = ({ children }) => {
                 return
             }
 
-            setTime(time - 1)
+            setTime(time - 20)
         }, 1000)
 
         return () => {
@@ -58,6 +58,7 @@ const AppManager = ({ children }) => {
         newPoints: getPointsByTime(totalTime),
         totalTime,
         setTotalTime,
+        setPoints,
         points,
         isFinished
     }

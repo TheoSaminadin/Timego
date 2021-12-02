@@ -58,7 +58,8 @@ const AppManager = ({ children }) => {
         newPoints: getPointsByTime(totalTime),
         totalTime,
         setTotalTime,
-        points
+        points,
+        isFinished
     }
 
     return (

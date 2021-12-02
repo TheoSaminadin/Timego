@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom"
 import '../index.css'
+import oeufPopUp from '../img/oeufLingot.png';
 
 
 //images
@@ -24,7 +25,8 @@ function Timer() {
         points,
         hasWon,
         stopTimer,
-        totalTime
+        totalTime,
+
     } = useContext(AppContext);
 
     //const start_btn = React.createElement('button', {},
@@ -43,6 +45,7 @@ function Timer() {
     const [inputTime, setInputTime] = useState(10);
     // const [point, setPoint] = useState(0);
     // const [second, setSecond] = useState(0)
+    const blur = 'style={{"filter: blur(10px);"}}'
 
     const handleInputTimeChange = (event) => {
         if (!isTimerRunning) {
@@ -57,47 +60,47 @@ function Timer() {
 
 
     // useEffect(() => {
-        // executé après le premier rendu et à chaque changement des variables entre crochets....****
+    // executé après le premier rendu et à chaque changement des variables entre crochets....****
 
-        // if (startBtn == 'ABANDONNER') {
+    // if (startBtn == 'ABANDONNER') {
 
-        //     const Second = setTimeout(() => {
-        //         if (second < 1) {
-        //             setSecond(59)
-        //         } else {
-        //             setSecond(second - 1)
-        //         }
-        //         if (count < 1) {
-        //             setSecond(0)
+    //     const Second = setTimeout(() => {
+    //         if (second < 1) {
+    //             setSecond(59)
+    //         } else {
+    //             setSecond(second - 1)
+    //         }
+    //         if (count < 1) {
+    //             setSecond(0)
 
-        //         }
-
-
-        //     }, 1000)
+    //         }
 
 
-            // const Minute = setTimeout(() => {
-            //     setInputTime(inputTime - 1)
-            //     setCount(count - 1)
-
-            // }, 60000);
+    //     }, 1000)
 
 
-            // if (startBtn == 'LANCER') {
-            //     document.getElementById('timeInput').disabled = false
-            //     return (clearTimeout(Minute))
-            // }
-            // else if (startBtn == 'ABANDONNER') {
-            //     return (document.getElementById('timeInput').disabled = true)
-            // }
+    // const Minute = setTimeout(() => {
+    //     setInputTime(inputTime - 1)
+    //     setCount(count - 1)
 
-            // if (count == 0) {
-             
-            //     return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
+    // }, 60000);
 
-            // }
-        // }
-        // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
+
+    // if (startBtn == 'LANCER') {
+    //     document.getElementById('timeInput').disabled = false
+    //     return (clearTimeout(Minute))
+    // }
+    // else if (startBtn == 'ABANDONNER') {
+    //     return (document.getElementById('timeInput').disabled = true)
+    // }
+
+    // if (count == 0) {
+
+    //     return (document.getElementById('score').style.display = "block", clearTimeout(Minute))
+
+    // }
+    // }
+    // lorsque ces variables entre cochets changent la fonction useEffect sera appellée *****
     // }, [count, startBtn, second]);
 
 
@@ -105,7 +108,7 @@ function Timer() {
     // const changeValue = () => {
     //     console.log(startBtn)
     //     if (startBtn == 'LANCER') {
-       
+
     //         setStartBtn('ABANDONNER')
     //     }
     //     else if (startBtn == 'ABANDONNER') {
@@ -144,7 +147,7 @@ function Timer() {
                         />
                     </div>
                     {/* <div className="time"><h1>{count}:{second} min</h1></div> */}
-                    
+
                     {isTimerRunning ? time : inputTime / 60}
 
                     <button onClick={isTimerRunning ? stopTimer : startTimer}>
@@ -152,13 +155,29 @@ function Timer() {
                     </button>
 
                     {/* <div style={{ display: 'none' }} id="score"><h1> Bravo ! tu as travaillé {count} et gagné {point} lingots</h1></div> */}
-                    
+
                     {hasWon && (
-                        <div>
-                            <p> Bravo ! tu as travaillé {totalTime} secondes et gagné {newPoints} lingots</p>
-                        </div>
+                        <>
+                            <div className="PopUpBackground">
+                            </div>
+
+                            <div className="PopUpBox">
+                                <div className="PopUpLayout">
+
+
+                                    <div className="PopUpContent">
+                                        <h2> Bravo !</h2>
+                                        <img src={oeufPopUp} width="auto" height="100" alt="Logo" />
+                                        <h3> TU AS FAIS ECLORE UN OEUF LINGOT</h3>
+                                        <p> Tu as travaillé {totalTime} secondes et gagné {newPoints} lingots</p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </>
                     )}
-                    
+
                     <div className="Menu">
                         <Link to="/"> <img alt="Timer Logo" src={TimerLogo} /></Link>
                         <Link to="/shop"> <img alt="Shop Logo" src={ShopLogo} /></Link>

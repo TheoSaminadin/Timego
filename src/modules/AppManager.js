@@ -1,43 +1,64 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import AppContext from "../AppContext";
+
+const getPointsByTime = (time) => {
+    return time * 0.5
+}
 
 const AppManager = ({ children }) => {
     const [time, setTime] = useState(0)
     const [isRunning, setIsRunning] = useState(false)
-    const [pointsToWin, setPointsToWin] = useState(0)
+    const [isFinished, setIsFinished] = useState(false)
+    const [isGivenUp, setIsGivenUp] = useState(false)
+    const [totalTime, setTotalTime] = useState(0)
     const [points, setPoints] = useState(0)
     const [hasWon, setHasWon] = useState(false)
 
-
     useEffect(() => {
         if (!isRunning) {
-            setPointsToWin(time * 0,5)
             return;
         }
 
-        setTimeout(() => {
-            setTime(time - 1)
-
-            if (time <= 1) {
-                // Finishing
+        const timeout = setTimeout(() => {
+            if (time === 0) {
                 setIsRunning(false)
-                setPoints(points + pointsToWin)
+                setPoints(points + getPointsByTime(totalTime))
                 setHasWon(true)
+                return
             }
+
+            setTime(time - 1)
         }, 1000)
-    }, [isRunning, time]);
+
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [isRunning, points, time, totalTime]);
 
     useEffect(() => {
-        setHasWon(false)
-    }, [isRunning])
+        // starting
+        if (isRunning) {
+            setHasWon(false)
+            setTime(totalTime)
+        }
+    }, [isRunning, totalTime])
+
+    const stopTimer = () => {
+        setIsRunning(false);
+        setIsFinished(true)
+    }
 
     const contextValue = {
         time,
         setTime,
         startTimer: () => setIsRunning(true),
+        stopTimer,
         isTimerRunning: isRunning,
         hasWon,
-        pointsToWin
+        newPoints: getPointsByTime(totalTime),
+        totalTime,
+        setTotalTime,
+        points
     }
 
     return (
@@ -47,6 +68,6 @@ const AppManager = ({ children }) => {
 
     )
 
-}
 
+}
 export default AppManager

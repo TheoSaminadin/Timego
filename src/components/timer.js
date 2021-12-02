@@ -17,11 +17,14 @@ import AppContext from "../AppContext";
 function Timer() {
     const {
         time,
-        setTime,
+        setTotalTime,
         isTimerRunning,
         startTimer,
-        pointsToWin,
-        hasWon
+        newPoints,
+        points,
+        hasWon,
+        stopTimer,
+        totalTime
     } = useContext(AppContext);
 
     //const start_btn = React.createElement('button', {},
@@ -37,14 +40,16 @@ function Timer() {
 
 
     // const [startBtn, setStartBtn] = useState('LANCER')
-    const [minuteTime, setMinuteTime] = useState(10);
+    const [inputTime, setInputTime] = useState(10);
     // const [point, setPoint] = useState(0);
     // const [second, setSecond] = useState(0)
 
     const handleInputTimeChange = (event) => {
-        setMinuteTime(event.target.value)
-        setTime(event.target.value * 60)
-        // setMinuteTime(event.target.value)
+        if (!isTimerRunning) {
+            setInputTime(event.target.value * 60)
+            setTotalTime(event.target.value * 60)
+        }
+        // setInputTime(event.target.value)
         // setInputTime((event.target.value))
         // setCount(InputTime)
         // setPoint(InputTime * 0.5)
@@ -120,7 +125,7 @@ function Timer() {
 
                     <div className="StatBar">
                         <p><img alt="XP image" src={Xplogo} /> 23 xp</p>
-                        <p><img alt="Gemme image" src={GemmeLogo} /> 23</p>
+                        <p><img alt="Gemme image" src={GemmeLogo} /> {points}</p>
                         <p><img alt="Niveau image" src={NiveauLogo} /> niv 1</p>
                     </div>
                     <h1 style={{ fontFamily: "Montserrat Bold", fontSize: "48px", margin: "0", marginTop: "3vh" }}>Choisi ton temps !</h1>
@@ -129,19 +134,20 @@ function Timer() {
 
                         <input
                             className="range"
-                            min="9"
+                            min="0"
                             max="61"
                             step="1"
                             onChange={handleInputTimeChange}
                             id="timeInput"
                             type="range"
-                            value={minuteTime}
+                            value={inputTime / 60}
                         />
                     </div>
                     {/* <div className="time"><h1>{count}:{second} min</h1></div> */}
-                    {time}
+                    
+                    {isTimerRunning ? time : inputTime / 60}
 
-                    <button onClick={startTimer}>
+                    <button onClick={isTimerRunning ? stopTimer : startTimer}>
                         {isTimerRunning ? 'ABANDONNER' : 'LANCER'}
                     </button>
 
@@ -149,7 +155,7 @@ function Timer() {
                     
                     {hasWon && (
                         <div>
-                            <h1> Bravo ! tu as travaillé {time} secondes et gagné {pointsToWin} lingots</h1>
+                            <p> Bravo ! tu as travaillé {totalTime} secondes et gagné {newPoints} lingots</p>
                         </div>
                     )}
                     

@@ -46,14 +46,12 @@ function Timer() {
     // const [count, setCount] = useState(0)
 
 
-
     // const [startBtn, setStartBtn] = useState('LANCER')
     const [inputTime, setInputTime] = useState(10 * 60);
     // const [point, setPoint] = useState(0);
     // const [second, setSecond] = useState(0)
 
-    const [PopUp, setPopUp] = useState(false)
-   
+ 
     const handleInputTimeChange = (event) => {
         if (!isTimerRunning) {
             setInputTime(event.target.value * 60)
@@ -65,8 +63,11 @@ function Timer() {
         // setPoint(InputTime * 0.5)
     }
 
+    console.log(inputTime)
+    console.log(totalTime)
+    console.log(time)
     const handleOnClickPopUp = (event) => {
-        console.log("coucou")
+        
         setHasWon(false)
       
     }

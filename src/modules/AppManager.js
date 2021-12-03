@@ -6,11 +6,10 @@ const getPointsByTime = (time) => {
 }
 
 const AppManager = ({ children }) => {
-    const [time, setTime] = useState(0)
+    const [time, setTime] = useState(10 * 60)
     const [isRunning, setIsRunning] = useState(false)
     const [isFinished, setIsFinished] = useState(false)
-    const [isGivenUp, setIsGivenUp] = useState(false)
-    const [totalTime, setTotalTime] = useState(0)
+    const [totalTime, setTotalTime] = useState(10 * 60)
     const [points, setPoints] = useState(0)
     const [hasWon, setHasWon] = useState(false)
     const [EggOne, setEggOne] = useState(false)
@@ -22,9 +21,7 @@ const AppManager = ({ children }) => {
     const ThirdTier = ((totalTime/60)/3)
     
     useEffect(() => {
-        console.log(FirtTier)
-        console.log(SecondTier)
-        console.log(ThirdTier)
+        
         if (SecondTier < time/60  && time/60<FirtTier) {
             setEggOne(true)
             setEggTwo(false)

@@ -98,21 +98,21 @@ function Shop() {
                     <div className="ShopPoint">   <p><img alt="Gemme image" src={GemmeLogo} /> {points}</p></div>
 
                     <div className="EggsContainer">
-                        <div class="Oeuf lingot">
+                        <div className="Oeuf lingot">
                             <img src={lingot} width="auto" height="100" alt="Logo" />
                             <p>Lingots d'or</p>
                             <p><img alt="Gemme image" src={GemmeLogo} />20 </p>
                             <button id="articleLingot" onClick={BuyLingot} value={priceLingot} >Acheter</button>
                         </div>
 
-                        <div class="Oeuf xp">
+                        <div className="Oeuf xp">
                             <img src={xp} width="auto" height="100" alt="Logo" />
                             <p>Xp au top</p>
                             <p><img alt="Gemme image" src={GemmeLogo} />40 </p>
                             <button id="articleXp" onClick={BuyXp} value={priceXp} >Acheter</button>
                         </div>
 
-                        <div class="Oeuf level">
+                        <div className="Oeuf level">
                             <img src={level} width="auto" height="100" alt="Logo" />
                             <p>Level up</p>
                             <p><img alt="Gemme image" src={GemmeLogo} />60 </p>

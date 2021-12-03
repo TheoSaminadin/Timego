@@ -11,10 +11,10 @@ function Shop() {
 
     const {
         
-        newPoints,
+      
         setPoints,
         points,
-        hasWon
+      
 
 
     } = useContext(AppContext);

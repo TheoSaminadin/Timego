@@ -146,8 +146,8 @@ function Timer() {
                         <p><img alt="Gemme image" src={GemmeLogo} /> {points}</p>
                         <p><img alt="Niveau image" src={NiveauLogo} /> niv 1</p>
                     </div>
-                    <h1 style={{ fontFamily: "Montserrat Bold", fontSize: "48px", margin: "0", marginTop: "3vh" }}>Choisi ton temps !</h1>
-                    <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin 1de ta séance...</p>
+                    <h1 style={{ fontFamily: "Montserrat Bold", fontSize: "48px", margin: "0", marginTop: "3vh" }}>Choisis ton temps !</h1>
+                    <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin de ta séance...</p>
                     <div className="RoundBox" >
 
                         {EggOne ? (<img className="HomeEgg" src={Home} />) : ("")}
@@ -158,7 +158,7 @@ function Timer() {
                         <input
                             className="range"
                             min="10"
-                            max="61"
+                            max="60"
                             step="1"
                             onChange={handleInputTimeChange}
                             id="timeInput"
@@ -196,7 +196,7 @@ function Timer() {
                                         <h2> Bravo !</h2>
                                         <img src={oeufPopUp} width="auto" height="100" alt="Logo" />
                                         <h3> TU AS FAIS ECLORE UN OEUF LINGOT</h3>
-                                        <p> Tu as travaillé {totalTime} secondes et gagné {newPoints} lingots</p>
+                                        <p> Tu as travaillé {totalTime/60} minutes et gagné {newPoints} lingots</p>
                                     </div>
 
                                 </div>

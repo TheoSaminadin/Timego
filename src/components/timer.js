@@ -148,6 +148,9 @@ function Timer() {
 
                     {isTimerRunning ? time : inputTime / 60}
 
+
+                   
+
                     <button onClick={isTimerRunning ? stopTimer : startTimer}>
                         {isTimerRunning ? 'ABANDONNER' : 'LANCER'}
                     </button>

@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             <div className="Menu">
 
                         <Link to="/"> <img alt="Timer Logo" src={TimerLogo} /></Link>
-                       <Link to="/shop"> <img alt="Shop Logo" src={ShopLogo} /></Link>
+                        <Link to="/shop"> <img alt="Shop Logo" src={ShopLogo} /></Link>
 
                     </div>
         </div>

@@ -17,14 +17,20 @@ const AppManager = ({ children }) => {
     const [EggTwo, setEggTwo] = useState(false)
     const [EggThree, setEggThree] = useState(false)
 
+    const FirtTier = ((totalTime/60)/3)*3
+    const SecondTier = ((totalTime/60)/3)*2
+    const ThirdTier = ((totalTime/60)/3)
+    
     useEffect(() => {
-      console.log(time/60)
-        if (5 < time/60  && time/60<7) {
+        console.log(FirtTier)
+        console.log(SecondTier)
+        console.log(ThirdTier)
+        if (SecondTier < time/60  && time/60<FirtTier) {
             setEggOne(true)
             setEggTwo(false)
             setEggThree(false)
          } 
-        if (3 < time/60 && time/60< 5) {
+        if (ThirdTier < time/60 && time/60< SecondTier) {
     
             setEggOne(false)
             setEggTwo(true)
@@ -32,7 +38,7 @@ const AppManager = ({ children }) => {
 
         
         }
-         if (0 < time/60 && time/60<3) {
+         if (0 < time/60 && time/60< ThirdTier) {
       
             setEggOne(false)
             setEggTwo(false)
@@ -80,6 +86,7 @@ const AppManager = ({ children }) => {
 
     const contextValue = {
         EggOne,
+        setHasWon,
         EggTwo,
         EggThree,
         time,

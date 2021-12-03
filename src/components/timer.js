@@ -31,6 +31,7 @@ function Timer() {
         hasWon,
         stopTimer,
         totalTime,
+        setHasWon
 
     } = useContext(AppContext);
 
@@ -50,8 +51,9 @@ function Timer() {
     const [inputTime, setInputTime] = useState(10);
     // const [point, setPoint] = useState(0);
     // const [second, setSecond] = useState(0)
-    const blur = 'style={{"filter: blur(10px);"}}'
 
+    const [PopUp, setPopUp] = useState(false)
+   
     const handleInputTimeChange = (event) => {
         if (!isTimerRunning) {
             setInputTime(event.target.value * 60)
@@ -61,6 +63,12 @@ function Timer() {
         // setInputTime((event.target.value))
         // setCount(InputTime)
         // setPoint(InputTime * 0.5)
+    }
+
+    const handleOnClickPopUp = (event) => {
+        console.log("coucou")
+        setHasWon(false)
+      
     }
 
 
@@ -140,10 +148,10 @@ function Timer() {
                     <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin 1de ta séance...</p>
                     <div className="RoundBox" >
 
-                      {EggOne? (<img className="HomeEgg" src={Home} />) : ("")} 
-                      {EggTwo? (<img className="HomeEgg" src={EggTwoLogo} />) : ("")} 
-                      {EggThree? (<img className="HomeEgg" src={EggThreeLogo} />) : ("")} 
-                      
+                        {EggOne ? (<img className="HomeEgg" src={Home} />) : ("")}
+                        {EggTwo ? (<img className="HomeEgg" src={EggTwoLogo} />) : ("")}
+                        {EggThree ? (<img className="HomeEgg" src={EggThreeLogo} />) : ("")}
+
 
                         <input
                             className="range"
@@ -171,7 +179,7 @@ function Timer() {
                             <div className="PopUpBackground">
                             </div>
 
-                            <div className="PopUpBox">
+                            <div onClick={handleOnClickPopUp} className="PopUpBox">
                                 <div className="PopUpLayout">
 
 

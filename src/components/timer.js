@@ -47,7 +47,7 @@ function Timer() {
 
 
     // const [startBtn, setStartBtn] = useState('LANCER')
-    const [inputTime, setInputTime] = useState(10);
+    const [inputTime, setInputTime] = useState(10 * 60);
     // const [point, setPoint] = useState(0);
     // const [second, setSecond] = useState(0)
     const blur = 'style={{"filter: blur(10px);"}}'
@@ -122,9 +122,10 @@ function Timer() {
     //     }
     // }
 
-
+    const minute = Math.floor(time / 60)
+    const second = time % 60
+    
     // Style 
-
     return (
         <Layout>
             <div className="BigTimerContainer">
@@ -147,7 +148,7 @@ function Timer() {
 
                         <input
                             className="range"
-                            min="0"
+                            min="10"
                             max="61"
                             step="1"
                             onChange={handleInputTimeChange}
@@ -158,7 +159,11 @@ function Timer() {
                     </div>
                     {/* <div className="time"><h1>{count}:{second} min</h1></div> */}
 
-                    {isTimerRunning ? time : inputTime / 60}
+                    {isTimerRunning ? (
+                        <span>
+                            {minute} : {second}
+                        </span>
+                    ) : inputTime / 60}
 
 
                    

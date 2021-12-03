@@ -18,7 +18,6 @@ const AppManager = ({ children }) => {
     const [EggThree, setEggThree] = useState(false)
 
     useEffect(() => {
-      console.log(time/60)
         if (5 < time/60  && time/60<7) {
             setEggOne(true)
             setEggTwo(false)

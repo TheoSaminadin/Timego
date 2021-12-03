@@ -4,8 +4,8 @@ import {
     Route
 } from "react-router-dom";
 
-import Shop from "./components/Shop"
-import Timer from "./components/Timer"
+import Shop from "./components/shop"
+import Timer from "./components/timer"
 import AppManager from "./modules/AppManager";
 
 const App = () => {

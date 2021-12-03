@@ -5,18 +5,17 @@ import xp from '../img/oeufXp.png';
 import level from '../img/oeufLevel.png';
 import Layout from "./Layout";
 import AppContext from "../AppContext";
-import Banderole from "../img/Banderole.png"
-
+import GemmeLogo from '../img/GemmeLogo.png';
 
 function Shop() {
 
     const {
-       
+        
         newPoints,
         setPoints,
         points,
         hasWon
-        
+
 
     } = useContext(AppContext);
 
@@ -27,7 +26,7 @@ function Shop() {
     const [priceXp, setPriceXp] = useState(40)
     const [priceLevel, setPriceLevel] = useState(60)
 
-    
+
     useEffect(() => {
         setPoints(wallet)
     }, [wallet])
@@ -95,28 +94,28 @@ function Shop() {
 
             <div className="BigShopContainer">
                 <div className="ShopContainer">
-                <img src={Banderole} width="auto" height="100" alt="Banderole" />
-                    <div className="ShopPoint"> <h1>Mes lingots : {points}</h1></div>
+                    <div className="Banderole"><h1>Boutique</h1></div>
+                    <div className="ShopPoint">   <p><img alt="Gemme image" src={GemmeLogo} /> {points}</p></div>
 
                     <div className="EggsContainer">
                         <div class="Oeuf lingot">
                             <img src={lingot} width="auto" height="100" alt="Logo" />
                             <p>Lingots d'or</p>
-                            <p>20 lingots</p>
+                            <p><img alt="Gemme image" src={GemmeLogo} />20 </p>
                             <button id="articleLingot" onClick={BuyLingot} value={priceLingot} >Acheter</button>
                         </div>
 
                         <div class="Oeuf xp">
                             <img src={xp} width="auto" height="100" alt="Logo" />
                             <p>Xp au top</p>
-                            <p>40 lingots</p>
+                            <p><img alt="Gemme image" src={GemmeLogo} />40 </p>
                             <button id="articleXp" onClick={BuyXp} value={priceXp} >Acheter</button>
                         </div>
 
                         <div class="Oeuf level">
                             <img src={level} width="auto" height="100" alt="Logo" />
                             <p>Level up</p>
-                            <p>60 lingots</p>
+                            <p><img alt="Gemme image" src={GemmeLogo} />60 </p>
                             <button id="articleLevel" onClick={BuyLevel} value={priceLevel} >Acheter</button>
                         </div>
                     </div>

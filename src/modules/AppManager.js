@@ -13,9 +13,36 @@ const AppManager = ({ children }) => {
     const [totalTime, setTotalTime] = useState(0)
     const [points, setPoints] = useState(0)
     const [hasWon, setHasWon] = useState(false)
+    const [EggOne, setEggOne] = useState(false)
+    const [EggTwo, setEggTwo] = useState(false)
+    const [EggThree, setEggThree] = useState(false)
 
     useEffect(() => {
+      console.log(time/60)
+        if (5 < time/60  && time/60<7) {
+            setEggOne(true)
+            setEggTwo(false)
+            setEggThree(false)
+         } 
+        if (3 < time/60 && time/60< 5) {
+    
+            setEggOne(false)
+            setEggTwo(true)
+            setEggThree(false)
+
+        
+        }
+         if (0 < time/60 && time/60<3) {
+      
+            setEggOne(false)
+            setEggTwo(false)
+            setEggThree(true)
+        }
         if (!isRunning) {
+            setEggOne(true)
+            setEggTwo(false)
+            setEggThree(false)
+              
             return;
         }
 
@@ -28,6 +55,7 @@ const AppManager = ({ children }) => {
             }
 
             setTime(time - 20)
+
         }, 1000)
 
         return () => {
@@ -37,7 +65,9 @@ const AppManager = ({ children }) => {
 
     useEffect(() => {
         // starting
+       
         if (isRunning) {
+            
             setHasWon(false)
             setTime(totalTime)
         }
@@ -49,6 +79,9 @@ const AppManager = ({ children }) => {
     }
 
     const contextValue = {
+        EggOne,
+        EggTwo,
+        EggThree,
         time,
         setTime,
         startTimer: () => setIsRunning(true),

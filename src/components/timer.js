@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import '../index.css'
+
+
 import oeufPopUp from '../img/oeufLingot.png';
 
 
 //images
 import Home from '../img/Home.png';
+import EggTwoLogo from '../img/EggTwo.png';
+import EggThreeLogo from '../img/EggThree.png';
 import GemmeLogo from '../img/GemmeLogo.png';
 import NiveauLogo from '../img/NiveauLogo.png';
 import Xplogo from '../img/XpLogo.png';
@@ -15,6 +19,9 @@ import AppContext from "../AppContext";
 
 function Timer() {
     const {
+        EggOne,
+        EggTwo,
+        EggThree,
         time,
         setTotalTime,
         isTimerRunning,
@@ -131,7 +138,12 @@ function Timer() {
                     </div>
                     <h1 style={{ fontFamily: "Montserrat Bold", fontSize: "48px", margin: "0", marginTop: "3vh" }}>Choisi ton temps !</h1>
                     <p>Tu as choisis un oeuf surprise, tu ne pourras découvrir son contenu qu’à la fin 1de ta séance...</p>
-                    <div className="RoundBox" ><img className="HomeEgg" src={Home} />
+                    <div className="RoundBox" >
+
+                      {EggOne? (<img className="HomeEgg" src={Home} />) : ("")} 
+                      {EggTwo? (<img className="HomeEgg" src={EggTwoLogo} />) : ("")} 
+                      {EggThree? (<img className="HomeEgg" src={EggThreeLogo} />) : ("")} 
+                      
 
                         <input
                             className="range"
@@ -176,7 +188,7 @@ function Timer() {
                         </>
                     )}
 
-                    
+
                 </div>
 
             </div>
